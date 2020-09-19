@@ -1,0 +1,12 @@
+html
+  include includes/head.pug
+    title Passport OAuth 2.0
+  body
+    include includes/navbar.pug
+    section(class='hero is-dark is-fullheight')
+      div(class='container')
+        h1(class='title') Passport OAuth 2.0
+        if user
+          p(class='subtitle') #{user.displayName} is logged in with #{config.oauth[user.provider].serviceName}.
+        else
+          p(class='subtitle') Not logged in.

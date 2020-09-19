@@ -1,0 +1,12 @@
+html
+  include includes/head.pug
+    title Login
+  body
+    include includes/navbar.pug
+    section(class='hero is-dark is-fullheight')
+      div(class='container')
+        h1(class='title') Sign in
+        div(class='buttons')
+          ul
+            li: a(class='button is-danger', href='/auth/google') <span class="fab fa-google"></span> &nbsp; Sign in with Google
+            li: a(class='button is-link', href='/auth/facebook') <span class="fab fa-facebook"></span> &nbsp; Sign in with Facebook

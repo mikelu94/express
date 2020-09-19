@@ -1,0 +1,14 @@
+nav(class='navbar is-dark')
+  div(class='navbar-brand')
+    a(href='/', class='navbar-item') Passport
+  div(class='navbar-menu')
+    div(class='navbar-start')
+      div(class='navbar-item')
+        a(href='/', class='navbar-item') Home
+    div(class='navbar-end')
+      div(class='navbar-item')
+        div(class='buttons')
+          if user
+            a(href='/auth/logout' class='button is-dark') Log out
+          else
+            a(href='/auth/login' class='button is-dark') Log in
