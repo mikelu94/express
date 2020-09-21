@@ -1,0 +1,26 @@
+html
+  include includes/head.pug
+    title Login
+  body
+    include includes/navbar.pug
+    section(class='hero is-dark is-fullheight')
+      div(class='container')
+        div(class='box')
+          article(class='message is-danger')
+          form(id='login-form')
+            div(class='field')
+              p(class='control has-icons-left')
+                input(class='input', type='email', placeholder='Email', name='email')
+                span(class='icon is-small is-left')
+                  i(class='fas fa-envelope')
+            div(class='field')
+              p(class='control has-icons-left')
+                input(class='input', type='password', placeholder='Password', name='password')
+                span(class='icon is-small is-left')
+                  i(class='fas fa-lock')
+            div(class='field')
+              div(class='control')
+                button(class='button is-success is-fullwidth') Login
+  script
+    include scripts/submit.js
+    include scripts/login.js

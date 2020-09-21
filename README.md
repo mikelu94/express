@@ -39,3 +39,31 @@ module.exports = {
   cookieSessionKeys: ['express/passport cookie session key']
 }
 ```
+
+For `jwt`, you need to add an additional `jwt/config.js`:
+
+```javascript
+const maxAgeSeconds = 60 * 60;
+
+module.exports = {
+  cookie: {
+    loginOptions: {
+      httpOnly: true,
+      maxAge: maxAgeSeconds * 1000
+    },
+    logoutOptions: {
+      maxAge: 0
+    }
+  },
+  jwt: {
+    secretOrPrivateKey: 'RSA PRIVATE KEY HERE',
+    signOptions: {
+      algorithm: 'RS256',
+      expiresIn: maxAgeSeconds
+    },
+    verifyOptions: {
+      algorithms: ['RS256']
+    }
+  }
+};
+```

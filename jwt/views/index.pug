@@ -1,0 +1,12 @@
+html
+  include includes/head.pug
+    title JWT
+  body
+    include includes/navbar.pug
+    section(class='hero is-dark is-fullheight')
+      div(class='container')
+        h1(class='title') JWT
+        if user
+          p(class='subtitle') #{user.email} is logged in.
+        else
+          p(class='subtitle') Not logged in.
