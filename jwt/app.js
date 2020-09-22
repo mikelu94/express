@@ -14,10 +14,10 @@ app.use(cookieParser());
 // view engine
 app.set('view engine', 'pug');
 
-//connect to mongodb
+// connect to mongodb
 mongoose.connect('mongodb://mongo:27017/jwt', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB database.');
@@ -32,5 +32,5 @@ app.use(authRouter);
 // listen for requests
 const PORT = process.env.port || 3000;
 app.listen(PORT, () => {
-  console.log(`Listening for requests on port ${PORT}.`)
+  console.log(`Listening for requests on port ${PORT}.`);
 });

@@ -6,9 +6,9 @@ const authMiddleware = (req, res, next) => {
   const token = req.cookies.jwt;
 
   // check token
-  if(token){
+  if (token) {
     jwt.verify(token, config.jwt.secretOrPrivateKey, config.jwt.verifyOptions, (err, decoded) => {
-      if(!err){
+      if (!err) {
         next();
       }
     });
@@ -20,19 +20,17 @@ const userMiddleware = (req, res, next) => {
   const token = req.cookies.jwt;
 
   // check token
-  if(token){
+  if (token) {
     jwt.verify(token, config.jwt.secretOrPrivateKey, config.jwt.verifyOptions, async (err, decoded) => {
-      if(err){
+      if (err) {
         res.locals.user = null;
-      }
-      else{ 
+      } else {
         const user = await User.findById(decoded.id);
         res.locals.user = user;
       }
       next();
     });
-  }
-  else{
+  } else {
     res.locals.user = null;
     next();
   }

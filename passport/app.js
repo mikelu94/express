@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require('./config');
 const passport = require('passport');
-const GoogleStrategy =  require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const User = require('./models/user');
 const authRouter = require('./routes/auth');
@@ -23,10 +23,10 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//connect to mongodb
+// connect to mongodb
 mongoose.connect('mongodb://mongo:27017/passport', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB database.');
@@ -80,7 +80,7 @@ passport.use(
 app.get('/', (req, res) => {
   res.render('index', {
     user: req.user,
-    config
+    config,
   });
 });
 
@@ -89,12 +89,12 @@ app.use('/auth', authRouter);
 // error handling
 app.use((err, req, res) => {
   res.status(err.status ? err.status : 500).send({
-    error: err.message
+    error: err.message,
   });
 });
 
 // listen for requests
 const PORT = process.env.port || 3000;
 app.listen(PORT, () => {
-  console.log(`Listening for requests on port ${PORT}.`)
+  console.log(`Listening for requests on port ${PORT}.`);
 });

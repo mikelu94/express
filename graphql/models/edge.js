@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const edgeSchema = new Schema({
+const edgeSchema = new mongoose.Schema({
   node1ID: {
     type: String,
     required: true,
@@ -9,7 +8,7 @@ const edgeSchema = new Schema({
   node2ID: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const Edge = mongoose.model('edge', edgeSchema);

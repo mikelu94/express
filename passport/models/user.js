@@ -1,23 +1,22 @@
 const mongoose = require('mongoose');
 const findOrCreate = require('mongoose-findorcreate');
-const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   displayName: {
-    type: String
+    type: String,
   },
   provider: {
     type: String,
-    required: true
+    required: true,
   },
   providerID: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 
 userSchema.plugin(findOrCreate);
-userSchema.index({provider: 1, providerID: 1}, {unique: true});
+userSchema.index({ provider: 1, providerID: 1 }, { unique: true });
 
 const User = mongoose.model('user', userSchema);
 

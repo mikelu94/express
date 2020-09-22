@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const nodeSchema = new Schema({
+const nodeSchema = new mongoose.Schema({
   value: {
     type: String,
     required: true,
-    unique: true
-  }
+    unique: true,
+  },
 });
 
 const Node = mongoose.model('node', nodeSchema);

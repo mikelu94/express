@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('passport');
 
-authRouter = express();
+const authRouter = express();
 
 // auth login
 authRouter.get('/login', (req, res) => {
@@ -16,7 +16,7 @@ authRouter.get('/logout', (req, res) => {
 
 // Google
 authRouter.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
+  scope: ['profile', 'email'],
 }));
 
 authRouter.get('/google/redirect', passport.authenticate('google'), (req, res) => {
