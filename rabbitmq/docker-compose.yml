@@ -1,0 +1,36 @@
+version: '3'
+services:
+  publisher:
+    container_name: publisher
+    build: ./publisher
+    depends_on:
+      - mq
+    ports:
+      - '3000:3000'
+    tty: true
+    volumes:
+      - ./publisher:/usr/src/app
+      - ./usr/src/app/node_modules
+  consumer:
+    container_name: consumer
+    build: ./consumer
+    depends_on:
+      - mq
+      - db
+    ports:
+      - '4000:3000'
+    tty: true
+    volumes:
+      - ./consumer:/usr/src/app
+      - ./usr/src/app/node_modules
+  db:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+  mq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
