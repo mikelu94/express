@@ -20,7 +20,7 @@ app.use(express.json());
 app.use('/api', require('./routes/api'));
 
 // error handling
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   res.status(err.status ? err.status : 500).send({
     error: err.message,
   });
