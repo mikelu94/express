@@ -28,9 +28,13 @@ services:
     image: mongo
     ports:
       - '27017:27017'
+    volumes:
+      - db_data:/data/db
   mq:
     container_name: rabbitmq
     image: rabbitmq:management
     ports:
       - '5672:5672'
       - '15672:15672'
+volumes:
+  db_data:
