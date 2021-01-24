@@ -1,0 +1,29 @@
+version: '3'
+services:
+  grpc-client:
+    container_name: grpc-client
+    build: ./client
+    ports:
+      - '3000:3000'
+    tty: true
+    volumes:
+      - ./client:/usr/src/app
+      - ./usr/src/app/node_modules
+  grpc-server:
+    container_name: grpc-server
+    build: ./server
+    depends_on:
+      - db
+    tty: true
+    volumes:
+      - ./server:/usr/src/app
+      - ./usr/src/app/node_modules
+  db:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - db_data:/data/db
+volumes:
+  db_data:
