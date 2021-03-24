@@ -1,5 +1,5 @@
 {
-  "name": "rabbitmq-publisher",
+  "name": "rabbitmq-producer",
   "version": "1.0.0",
   "main": "app.js",
   "license": "MIT",
