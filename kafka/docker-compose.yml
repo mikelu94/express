@@ -1,0 +1,41 @@
+version: '3'
+services:
+  producer:
+    container_name: producer
+    build: ./producer
+    depends_on:
+      - bus
+    ports:
+      - '3000:3000'
+    tty: true
+    volumes:
+      - ./producer:/usr/src/app
+      - ./usr/src/app/node_modules
+  consumer:
+    container_name: consumer
+    build: ./consumer
+    depends_on:
+      - bus
+    ports:
+      - '4000:3000'
+    tty: true
+    volumes:
+      - ./consumer:/usr/src/app
+      - ./usr/src/app/node_modules
+  controller:
+    container_name: zookeeper
+    image: zookeeper
+    ports:
+      - '2181:2181'
+  bus:
+    container_name: kafka
+    image: confluentinc/cp-kafka
+    depends_on:
+      - controller
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    ports:
+      - '9092:9092'
+    
