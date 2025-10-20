@@ -11,7 +11,7 @@ Some express projects that I wrote.
 For any of these projects, just run:
 
 ```bash
-$ docker-compose up
+$ docker-compose watch
 ```
 
 and

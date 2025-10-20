@@ -2,22 +2,30 @@ services:
   producer:
     container_name: producer
     build: ./producer
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./producer
+          target: /usr/src/app
     depends_on:
       - mq
     ports:
       - '3000:3000'
     tty: true
     volumes:
-      - ./producer:/usr/src/app
       - ./usr/src/app/node_modules
   consumer:
     container_name: consumer
     build: ./consumer
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./consumer
+          target: /usr/src/app
     depends_on:
       - mq
     tty: true
     volumes:
-      - ./consumer:/usr/src/app
       - ./usr/src/app/node_modules
   mq:
     container_name: rabbitmq
